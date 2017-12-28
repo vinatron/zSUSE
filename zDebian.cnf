@@ -1,0 +1,40 @@
+CPUSERIAL 000069        # CPU serial number
+CPUMODEL  9672          # CPU model number
+MAINSIZE  4096          # Main storage size in megabytes
+XPNDSIZE  0             # Expanded storage size in megabytes
+CNSLPORT  3270          # TCP port number to which consoles connect
+NUMCPU    4             # Number of CPUs
+#LOADPARM  0120....      # IPL parameter
+OSTAILOR  LINUX         # OS tailoring
+PANRATE   SLOW          # Panel refresh rate (SLOW, FAST)
+ARCHMODE  ESAME        # Architecture mode ESA/390 or ESAME
+
+# .-----------------------Device number
+# |     .-----------------Device type
+# |     |       .---------File name and parameters
+# |     |       |
+# V     V       V
+#---    ----    --------------------
+
+# console
+001F    3270
+
+# terminal
+0009    3215
+
+# reader
+000C    3505    ./rdr/kernel.debian ./rdr/parmfile.debian ./rdr/initrd.debian autopad eof
+
+# printer
+000E    1403    ./prt/print00e.txt crlf
+
+# dasd
+0120    3390    ./dasd/3390.LINUX.0120
+0121    3390    ./dasd/3390.LINUX.0121
+0122    3390    ./dasd/3390.LINUX.0122
+
+# tape
+0581    3420
+
+# network                               s390     realbox
+0A00,0A01  CTCI -n /dev/net/tun -t 1500 10.1.1.2 10.1.1.1
